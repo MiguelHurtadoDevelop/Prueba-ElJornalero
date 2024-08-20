@@ -35,3 +35,10 @@ Route::post('/email/verification-notification', [EmailVerificationNotificationCo
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->middleware('auth')
                 ->name('logout');
+
+
+Route::fallback(function(){
+     return response()->json([
+        'message' => 'Página no encontrada'
+    ], 404);
+});                

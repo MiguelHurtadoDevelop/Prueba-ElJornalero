@@ -21,3 +21,11 @@ Route::middleware(['auth:sanctum'])->post('/savePersonaje', 'App\Http\Controller
 Route::middleware(['auth:sanctum'])->get('/savedPersonajes', 'App\Http\Controllers\SavedPersonajesController@getSavedPersonajes');
 
 Route::middleware(['auth:sanctum'])->delete('/deleteSavedPersonaje/{id}', 'App\Http\Controllers\SavedPersonajesController@deleteSavedPersonaje');
+
+
+//Ruta para controlar error 404
+Route::fallback(function(){
+    return response()->json([
+        'message' => 'Página no encontrada'
+    ], 404);
+});
