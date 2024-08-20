@@ -10,18 +10,17 @@ class PersonajesController extends Controller
 {
     public function getPersonajes(Request $request, $page = null)
     {
-        // Base API URL
+        
         $apiUrl = 'https://rickandmortyapi.com/api/character';
 
-        // Initialize query parameters
         $queryParams = [];
 
-        // Add pagination if the page is provided
+        // Comprobamos si hay página
         if ($page !== null && $page > 1) {
             $queryParams['page'] = $page;
         }
 
-        // Add filters if they are provided
+        // Comprobamos si hay parámetros de búsqueda
         if ($request->has('name')) {
             $queryParams['name'] = $request->query('name');
         }
@@ -38,20 +37,21 @@ class PersonajesController extends Controller
             $queryParams['gender'] = $request->query('gender');
         }
 
-        // Make the API request with the query parameters
+        // Hacemos la petición a la API externa con los parámetros de búsqueda
         $response = Http::get($apiUrl, $queryParams);
 
+        // Devolvemos los datos en formato JSON
         return $response->json();
     }
 
     public function getPersonajeById($id)
     {
-        // Base API URL
         $apiUrl = 'https://rickandmortyapi.com/api/character/' . $id;
 
-        // Make the API request
+        // Hacemos la petición a la API externa
         $response = Http::get($apiUrl);
 
+        // Devolvemos los datos en formato JSON
         return $response->json();
     }
 

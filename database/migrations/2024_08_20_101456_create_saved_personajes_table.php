@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('savedcharacters', function (Blueprint $table) {
+        Schema::create('saved_personajes', function (Blueprint $table) {
             $table->id();
-            $table->integer('character_id');
+            $table->integer('personaje_id');
             $table->unsignedBigInteger('user_id'); 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('savedcharacters');
+        Schema::dropIfExists('saved_personajes');
     }
 };
