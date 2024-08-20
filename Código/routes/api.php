@@ -24,6 +24,7 @@ Route::middleware(['auth:sanctum'])->delete('/deleteSavedPersonaje/{id}', 'App\H
 
 
 //Ruta para controlar error 404
+
 Route::fallback(function(){
     return response()->json([
         'message' => 'Página no encontrada'
